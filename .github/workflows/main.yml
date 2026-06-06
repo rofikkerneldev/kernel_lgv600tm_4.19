@@ -18,12 +18,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y bc bison build-essential flex git libssl-dev \
           libncurses5-dev zip python3 gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
-         
+          
 
       - name: Fetch Toolchain
         run: |
           git clone --depth=1 https://github.com/kdrag0n/proton-clang.git toolchain
-
+          git clone --depth=1 https://github.com/WireGuard/android_kernel_wireguard.git wireguard
       - name: Detect Kernel Version
         id: info
         run: |
@@ -43,9 +43,7 @@ jobs:
           export ARCH=arm64
           export CROSS_COMPILE=aarch64-linux-gnu-
           export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
-          wget https://raw.githubusercontent.com/WireGuard/android_kernel_wireguard/refs/heads/master/patch-kernel.sh
-          chmod +x patch-kernel.sh
-          bash ./patch-kernel.sh .
+          bash wireguard/patch-kernel.sh .
           # 2. Initialize Config
           make O=out $DEFCONFIG
           

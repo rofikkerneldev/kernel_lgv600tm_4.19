@@ -14,11 +14,13 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          
           sudo apt-get update
           sudo apt-get install -y bc bison build-essential flex git libssl-dev \
           libncurses5-dev zip python3 gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
           wget https://raw.githubusercontent.com/WireGuard/android_kernel_wireguard/refs/heads/master/patch-kernel.sh
-          ./patch-kernel.sh
+          chmod +x patch-kernel.sh
+          bash ./patch-kernel.sh
 
       - name: Fetch Toolchain
         run: |

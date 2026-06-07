@@ -18,8 +18,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y bc bison build-essential flex git libssl-dev \
           libncurses5-dev zip python3 gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
-          
 
+      - name: Install Dependencies
+        run: |
+          
+           git config --global user.email "rkkernel@rofikkernel.com"
+           git config --global user.name "RofikKernelDev"
+         
+           
+    
       - name: Fetch Toolchain
         run: |
           git clone --depth=1 https://github.com/kdrag0n/proton-clang.git toolchain
